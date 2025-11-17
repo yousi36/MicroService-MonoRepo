@@ -101,7 +101,9 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { UserService } from './user.service';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from './auth/auth.service';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { UseGuards } from '@nestjs/common';
 import {
   CreateUserDto,
   LoginUserDto,

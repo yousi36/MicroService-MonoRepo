@@ -23,7 +23,7 @@ import {
   LoginUserDto,
   UserResponseDto,
   AuthResponseDto,
-} from '../../../libs/lib/src/dto/user.dto';
+} from '../../../../libs/lib/src/dto/user.dto';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
 @ApiTags('Authentication') // Swagger group

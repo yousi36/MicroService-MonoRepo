@@ -49,16 +49,24 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { User, UserDocument } from '../../../libs/lib/src/database/schema';
 import { CreateUserDto, UserResponseDto } from '../../../libs/lib/src/dto/user.dto';
+import { ResendService } from './resend.service';
+import { MailService } from './mail.service';
+
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,
+private readonly resendService: ResendService,
+private readonly mailService:MailService,
+
+) {}
 
   // Create a new user (registration)
   async createUser(data: CreateUserDto): Promise<UserResponseDto> {
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const created = new this.userModel({ ...data, password: hashedPassword });
     const savedUser = await created.save();
+    await this.resendService.sendWelcomeEmail(savedUser.email, savedUser.username);
 
     return {
       id: savedUser._id as string,
@@ -69,6 +77,8 @@ export class UserService {
       updatedAt: new Date(),
     };
   }
+  //mail sending functionality 
+   
 
   // Find user by email (used in login)
   async findByEmail(email: string): Promise<UserDocument | null> {

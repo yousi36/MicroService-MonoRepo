@@ -41,12 +41,12 @@
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { UserService } from '../src/user.service';
+import { UserService } from '../user.service';
 import {
   CreateUserDto,
   UserResponseDto,
   AuthResponseDto,
-} from '../../../libs/lib/src/dto/user.dto';
+} from '../../../../libs/lib/src/dto/user.dto';
 
 @Injectable()
 export class AuthService {
