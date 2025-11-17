@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ProductService {
-  getHello(): string {
-    return 'Hello World!';
+  getProducts() {
+    return [
+      { id: 1, name: 'Keyboard' },
+      { id: 2, name: 'Mouse' },
+    ];
   }
 }
+

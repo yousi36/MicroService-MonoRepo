@@ -2,7 +2,10 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CatalogService {
-  getHello(): string {
-    return 'Hello World!';
+  getCatalog() {
+    return [
+      { id: 1, category: 'Electronics' },
+      { id: 2, category: 'Grocery' },
+    ];
   }
 }
